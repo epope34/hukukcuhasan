@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yıldırım Hukuk Bürosu</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header, footer { background: #333; color: white; text-align: center; padding: 10px 0; }
+        main { padding: 15px; }
+        .section { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Yıldırım Hukuk Bürosu</h1>
+    </header>
+    <main>
+        <section id="hakkimizda">
+            <h2>Hakkımızda</h2>
+            <p>Profesyonel hukuki danışmanlık ve destek hizmetleri sunuyoruz.</p>
+        </section>
+        <section id="hizmetler">
+            <h2>Hizmetlerimiz</h2>
+            <p>Eş takibi, boşanma davası, delil toplama, adres tespiti, sabıka kaydı silinme işlemleri.</p>
+        </section>
+        <section id="makaleler">
+            <h2>Hukuki Makaleler</h2>
+            <p>En güncel hukuki makaleler ve bilgilendirmeler.</p>
+        </section>
+        <section id="destek">
+            <h2>Destek Talebi</h2>
+            <form id="supportForm">
+                <input type="text" name="name" placeholder="İsim Soyisim" required><br>
+                <input type="text" name="tc" placeholder="T.C. Kimlik No" required><br>
+                <input type="text" name="city" placeholder="İl" required><br>
+                <input type="text" name="district" placeholder="İlçe" required><br>
+                <textarea name="request" placeholder="Destek Talebi" required></textarea><br>
+                <button type="button" onclick="sendEmail()">Gönder</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Yıldırım Hukuk Bürosu. Tüm hakları saklıdır.</p>
+    </footer>
+    <script>
+        function sendEmail() {
+            var formData = new FormData(document.getElementById('supportForm'));
+            fetch('sendEmail.php', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.text()).then(data => {
+                alert('Destek talebiniz alındı.');
+            }).catch(error => {
+                alert('Bir hata oluştu: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>
